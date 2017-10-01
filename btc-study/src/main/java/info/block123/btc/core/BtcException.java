@@ -3,7 +3,6 @@ package info.block123.btc.core;
 /**
  * 自定义btc学习项目异常
  * @author v2future
- * hello
  */ 
 public class BtcException extends RuntimeException{
 
