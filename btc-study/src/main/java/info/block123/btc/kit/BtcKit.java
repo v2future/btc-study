@@ -107,4 +107,16 @@ public class BtcKit {
     	byte version = 0x00;
     	return Base58Check.encode(version, hash160);
     }
+    
+    /**
+     * 复制指定长度的byte
+     * @param in
+     * @param length
+     * @return
+     */
+    public static byte[] copyOf(byte[] in, int length) {
+        byte[] out = new byte[length];
+        System.arraycopy(in, 0, out, 0, Math.min(length, in.length));
+        return out;
+    }
 }
