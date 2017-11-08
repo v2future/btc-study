@@ -11,7 +11,7 @@ public class TxOutPoint {
 	private String txHash;
 	private long index;
 	
-	//虚拟属性
+	//----------------------虚拟属性
 	private Transaction fromTx;
 	public String getTxHash() {
 		return txHash;
@@ -40,5 +40,11 @@ public class TxOutPoint {
     public byte[] getConnectedPubKeyHash() {
         return getConnectedOutput().getScriptPubKey().getPubKeyHash();
     }
+	public Transaction getFromTx() {
+		return fromTx;
+	}
+	public void setFromTx(Transaction fromTx) {
+		this.fromTx = fromTx;
+	}
 
 }

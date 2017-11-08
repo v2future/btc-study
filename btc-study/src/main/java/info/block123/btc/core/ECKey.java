@@ -65,6 +65,24 @@ public class ECKey {
 		return new ECPoint.Fp(ecParams.getCurve(), uncompressed.getX(), uncompressed.getY(), true);
 	}
 	
+	public ECKey(BigInteger privKey) {
+		this(privKey, (byte[])null);
+	}
+	
+	private ECKey(BigInteger privKey, byte[] pubKey) {
+        this(privKey, pubKey, false);
+    }
+	
+	public ECKey(BigInteger privKey, byte[] pubKey, boolean compressed) {
+        this.priv = privKey;
+        this.pub = null;
+        if (pubKey == null && privKey != null) {
+            this.pub = publicKeyFromPrivate(privKey, compressed);
+        } else if (pubKey != null) {
+            this.pub = pubKey;
+        }
+    }
+	
 	/**
 	 * 
 	 * @return 返回公钥

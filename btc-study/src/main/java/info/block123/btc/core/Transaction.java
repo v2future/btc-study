@@ -4,11 +4,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 import org.spongycastle.crypto.params.KeyParameter;
 
+import info.block123.btc.core.TransactionConfidence.ConfidenceType;
 import info.block123.btc.kit.BtcKit;
 import info.block123.btc.kit.Utils;
 
@@ -26,8 +28,12 @@ public class Transaction {
 	private TransactionConfidence confidence;	//交易确认信息
 	public static final int UNKNOWN_LENGTH = Integer.MIN_VALUE;
 	protected transient int length = UNKNOWN_LENGTH;
+	//交易原始数据
+	private TxData txData = null;
+    private Date updatedAt;
 	//----------------------------------------------
 	public static final int LOCKTIME_THRESHOLD = 500000000;
+	public static final int MAX_STANDARD_TX_SIZE = 100 * 1024;
 	/**交易的hash值**/
 	private byte[] hash;
 	
@@ -67,7 +73,11 @@ public class Transaction {
 		return false;
 	}
 	
-	public byte[] getHash() {
+	public void setUpdateTime(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+	
+	public Sha256Hash getHash() {
 		/*
 	        if (hash == null) {
 	            byte[] bits = bitcoinSerialize();
@@ -324,7 +334,43 @@ public class Transaction {
 		}
 		
 	}
-	 
+	
+	
+	public byte[] bitcoinSerialize() {
+		 if ( this.txData == null)
+			 throw new BtcException("缺失交易数据");
+		 return this.txData.bitcoinSerialize();
+	}
+	
+	 /**
+	  * 是否是成熟的交易
+	  * @return
+	  */
+    public boolean isMature() {
+        if (!isCoinBase())
+            return true;
+        if (getConfidence().getConfidenceType() != ConfidenceType.BUILDING)
+            return false;
+        //return getConfidence().getDepthInBlocks() >= params.getSpendableCoinbaseDepth();
+        //TODO
+        return true;
+    }
+    
+    
+    /**
+     * 属于自己可花费的返回false
+     * @param wallet
+     * @return
+     */
+    public boolean isEveryOwnedOutputSpent(Wallet wallet) {
+        //maybeParse();
+        for (TxOut output : txOutVector) {
+            if (output.isAvailableForSpending() && output.isMine(wallet))
+                return false;
+        }
+        return true;
+    }
+	
 	
 	public int getVesion() {
 		return vesion;

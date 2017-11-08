@@ -18,6 +18,10 @@ public class TxOut {
 	private transient Script scriptPubKey;
 	//归属的tx
 	private Transaction tx;
+	//-------------------------------------------------------
+	private boolean availableForSpending;
+	private TxIn spentBy;
+	
 	
 	public TxOut() {}
 	
@@ -25,6 +29,7 @@ public class TxOut {
 		this.tx = tx;
 		this.value = value;
 		this.scriptBytes = to.getHash160();
+		this.availableForSpending = true;
 	}
 	
 	/**
@@ -55,7 +60,19 @@ public class TxOut {
         return scriptPubKey;
     }
 	
+	public boolean isAvailableForSpending() {
+		return availableForSpending;
+	}
 	
+	public void markAsSpent(TxIn input) {
+		availableForSpending = false;
+		spentBy = input;
+	}
+
+	public void markAsUnspent() {
+		availableForSpending = true;
+		spentBy = null;
+	}
 
 	public void setValue(BigInteger value) {
 		this.value = value;

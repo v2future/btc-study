@@ -50,22 +50,17 @@ public class WalletTx {
 	}
 
 	private Transaction transaction;
-	
-	/* 
-	 * TODO
 	private Pool pool;
 
 	public WalletTx(Pool pool, Transaction transaction) {
-	        this.pool = checkNotNull(pool);
-	        this.transaction = transaction;
+		this.pool = pool;
+	    this.transaction = transaction;
 	}
-	*/    
 
 	public Transaction getTransaction() {
-		return transaction;
+        return transaction;
+    }
+	public Pool getPool() {
+		return pool;
 	}
-
-	//public Pool getPool() {
-	//	return pool;
-	//}
 }
