@@ -15,7 +15,7 @@
  */
 
 package net.bither.bitherj.core;
-
+ 
 import net.bither.bitherj.db.AbstractDb;
 import net.bither.bitherj.utils.Utils;
 
@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BlockTest {
-    @Test
+    @Test 
     public void testText() {
         assertEquals("", "");
         Block block = new Block(2, "00000000000000003711b624fbde8c77d4c7e25334cfa8bc176b7248ca67b24b", "d1ce608b0e83f5b0c134d27ea6952fc55bc68b5ccf0490bbb47ea1906a7075d0", 1407474112

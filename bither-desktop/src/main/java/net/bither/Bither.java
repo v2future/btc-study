@@ -94,35 +94,6 @@ public final class Bither {
         applicationDataDirectoryLocator = new ApplicationDataDirectoryLocator();
         initBitherApplication();
         initApp(args);
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (true) {
-//                    StringUtil.maxUsedSize();
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//
-//            }
-//        }).start();
-//        System.out.println("addresses:" + AbstractDb.addressProvider.getAddresses().size());
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                while (true) {
-//                    AbstractDb.addressProvider.getAddresses();
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-        //  StringUtil.callSystemGC();
-//                }
-//            }
-//        }).start();
 
     }
 
@@ -145,7 +116,6 @@ public final class Bither {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 

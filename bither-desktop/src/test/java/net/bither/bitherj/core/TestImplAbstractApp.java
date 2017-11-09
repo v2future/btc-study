@@ -35,7 +35,8 @@ public class TestImplAbstractApp extends AbstractApp {
     public TrustCert initTrustCert() {
         return null;
     }
-
+    
+    /*
     @Override
     public ISetting initSetting() {
         return new ISetting() {
@@ -96,10 +97,18 @@ public class TestImplAbstractApp extends AbstractApp {
 
 
         };
+        
     }
+    */
 
     @Override
     public NotificationService initNotification() {
         return null;
     }
+
+	@Override
+	protected ISetting initSetting() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
