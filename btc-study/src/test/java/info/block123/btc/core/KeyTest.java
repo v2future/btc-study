@@ -65,7 +65,7 @@ public class KeyTest {
 	 */
 	@Test
 	public void testPrivKeyToAddress() {
-		String formatPrivKey = "5JG9hT3beGTJuUAmCQEmNaxAuMacCTfXuw1R3FCXig23RQHMr4K";
+		String formatPrivKey = "5MN9hT3beGTJuUAmCQEmNaxAuMacCTfXuw1R3FCXig23RQHMr4K";
 		KeyFormat format = new PrivKeyFormat(KeyFormat.PRIV_KEY_WIF);
 		byte[] privKeyBytes = format.parse(formatPrivKey);
 		byte[] pubKeyBytes = ECKey.publicKeyFromPrivate(BtcKit.byte32toBigInteger(privKeyBytes), false);
