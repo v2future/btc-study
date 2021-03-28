@@ -1,13 +1,3 @@
-/**
- * Copyright (C), 2015-2019, XXX有限公司
- * FileName: AES
- * Author:   林森
- * Date:     2019/7/18 10:45
- * Description: AES加密解密
- * History:
- * <author>          <time>          <version>          <desc>
- * 作者姓名           修改时间           版本号              描述
- */
 package info.block123.btc.core;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
