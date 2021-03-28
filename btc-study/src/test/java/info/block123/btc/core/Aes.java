@@ -10,12 +10,13 @@ import javax.crypto.KeyGenerator;
 
 public class AES {
 	
-	  public static final String DEFAULT_KEY = "test";
+	
+  public static final String DEFAULT_KEY = "test";
 
-    public static String DES = "AES"; // optional value AES/DES/DESede
-    public static String CIPHER_ALGORITHM = "AES"; // optional value AES/DES/DESede
+  public static String DES = "AES"; // optional value AES/DES/DESede
+  public static String CIPHER_ALGORITHM = "AES"; // optional value AES/DES/DESede
 
-    private static Key getKey(String strKey) {
+  private static Key getKey(String strKey) {
         try {
             if (strKey == null) {
                 strKey = "";
@@ -36,7 +37,7 @@ public class AES {
 	        Key secureKey = getKey(key);
 	        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
 	        cipher.init(Cipher.ENCRYPT_MODE, secureKey, sr);
-	        byte[] bt = cipher.doFinal(data.getBytes());
+	        byte[] bt = cipher.doFinal(data.getBytes("utf-8"));
 	        String strS = new BASE64Encoder().encode(bt);
 	        return strS;
     	} catch(Exception e) {
@@ -59,10 +60,11 @@ public class AES {
 		}
     }
     
-    
     public static void main(String[] args) {
-    	String target = AES.encode("key", "test");
+    	String target = AES.encode("key", "1234");
     	System.out.println( target);
+    	
+    	System.out.println( AES.decode("key", target));
     
     }
 }
