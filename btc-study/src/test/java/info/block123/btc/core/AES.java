@@ -1,15 +1,13 @@
 package info.block123.btc.core;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 import java.security.Key;
 import java.security.SecureRandom;
+import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 
 public class AES {
-	
 	
   public static final String DEFAULT_KEY = "test";
 
@@ -38,7 +36,7 @@ public class AES {
 	        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
 	        cipher.init(Cipher.ENCRYPT_MODE, secureKey, sr);
 	        byte[] bt = cipher.doFinal(data.getBytes("utf-8"));
-	        String strS = new BASE64Encoder().encode(bt);
+	        String strS = Base64.getEncoder().encodeToString(bt);
 	        return strS;
     	} catch(Exception e) {
     		throw new RuntimeException("AES加密异常");
@@ -52,7 +50,7 @@ public class AES {
 	        Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
 	        Key secureKey = getKey(key);
 	        cipher.init(Cipher.DECRYPT_MODE, secureKey, sr);
-	        byte[] res = new BASE64Decoder().decodeBuffer(data);
+	        byte[] res = Base64.getDecoder().decode(data);
 	        res = cipher.doFinal(res);
 	        return new String(res);
 	    } catch(Exception e) {
